@@ -1,6 +1,6 @@
 # labels_nuxt
 
-> My cat&#39;s meow Nuxt.js project
+> Label Nuxt Project
 
 ## Build Setup
 
