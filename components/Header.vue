@@ -1,29 +1,27 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarTogglerLabel"
-        aria-controls="navbarTogglerLabel"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerLabel">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
         <a class="navbar-brand" href="#">Label Project</a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <nuxt-link to class="nav-link">Home</nuxt-link>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <nuxt-link to="/" class="nav-link">Home</nuxt-link>
+            </li>
+            <li class="nav-item">
+              <nuxt-link to="labels" class="nav-link">Labels</nuxt-link>
+            </li>
+            <li class="nav-item">
+              <nuxt-link to class="nav-link">Add a new label</nuxt-link>
+            </li>
+            <li class="nav-item">
+              <nuxt-link to class="nav-link">Contact</nuxt-link>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 </template>
 

@@ -1,20 +1,15 @@
 <template>
-  <section class="container">
-    <div>
-
-    </div>
+  <section>
+    <h4 class="text-center">Последние поступления</h4>
   </section>
 </template>
 
 <script>
-
-
 export default {
-  components: {
-  }
+
 }
 </script>
 
-<style>
+<style lang="sass" scoped>
 
 </style>

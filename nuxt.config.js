@@ -15,7 +15,8 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' }
+      { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto' }
     ],
     script: [
       { src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js' },
