@@ -28,6 +28,10 @@ export default {
 
 <style lang="scss" scoped>
 .labels-list {
-  margin-top: 80px;
+  margin-top: 20px;
+}
+
+.portfolio-item {
+  margin-bottom: 20px;
 }
 </style>
