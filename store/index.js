@@ -3,21 +3,22 @@ import Vuex from 'vuex';
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      loadedLabels: []
+      loadedKinds: [],
+      loadedManufacturs: [],
     },
     mutations: {
-      setLabels(state, labels) {
-        state.loadedLabels = labels;
+      setKinds(state, kinds) {
+        state.loadedKinds = kinds;
       }
     },
     actions: {
-      setLabels(vuexContext, labels) {
-        vuexContext.commit('setLabels', labels);
+      setKinds(vuexContext, kinds) {
+        vuexContext.commit('setKinds', kinds);
       },
     },
     getters: {
-      loadedLabels(state) {
-        return state.loadedLabels;
+      loadedKinds(state) {
+        return state.loadedKinds;
       }
     }
   })

@@ -21,18 +21,28 @@ html {
 }
 
 .main {
-  margin-top: 65px;
+  margin-top: 56px;
 }
 </style>
 
 <script>
 import Header from "~/components/Header.vue";
 import Footer from "~/components/Footer.vue";
+import Axios from 'axios';
 
 export default {
   components: {
     Header,
     Footer,
+  },
+  async asyncData(context) {
+    console.log(context);
+    let manufactures = await Axios.get(' http://127.0.0.1:8000/api/manufactories/');
+    let kinds = await Axios.get(' http://127.0.0.1:8000/api/kinds/');
+    return {
+      manufactures: manufactures.data,
+      kinds: kinds.data,
+    }
   }
 };
 </script>

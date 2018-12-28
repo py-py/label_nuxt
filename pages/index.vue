@@ -13,13 +13,11 @@ export default {
   components: {
     Labels
   },
-  asyncData({app}) {
-    app.$axios
-    .get('http://127.0.0.1:8000/api/labels/')
-    .then((data)=> {
-      let loadedLabels = data.results;
-      console.log(data);
-    })
+  async asyncData(context) {
+    let data = await Axios.get("http://127.0.0.1:8000/api/labels/?last");
+    return {
+      loadedLabels: data.data.results
+    }
   },
 };
 </script>
