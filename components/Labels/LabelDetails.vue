@@ -1,5 +1,5 @@
 <template>
-  <div class="container my-2">
+  <div class="container py-1">
     <!-- Portfolio Item Heading -->
     <h1 class="my-4 text-center">{{label.name}}</h1>
 
@@ -11,18 +11,7 @@
 
       <div class="col-md-6">
         <h4 class="product-title my-3">{{label.name}}</h4>
-        <div class="row">
-          <div class="rating col">
-							<div class="stars">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-							<small class="review-no">{{label.seen}} reviews</small>
-						</div>
-        </div>
+        <Rating :seen="label.seen"/>
         <h4 class="my-3">Details</h4>
 
         <div class="row">
@@ -48,25 +37,10 @@
     <!-- Related Projects Row -->
     <h3 class="my-4">Related Projects</h3>
     <div class="row">
-      <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt>
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt>
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt>
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt>
-        </a>
+      <div class="col-md-3 col-sm-6 mb-4" v-for="item in label.related_labels" :key="item.id">
+        <nuxt-link :to="/labels/ + item.id">
+          <img class="img-fluid" :src=item.image_url alt>
+        </nuxt-link>
       </div>
     </div>
     <!-- /.row -->
@@ -74,7 +48,12 @@
 </template>
 
 <script>
+import Rating from "~/components/Labels/Rating";
+
 export default {
+  components: {
+    Rating
+  },
   props: {
     label: {
       type: Object,

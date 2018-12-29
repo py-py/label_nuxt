@@ -21,7 +21,7 @@ html {
 }
 
 .main {
-  margin-top: 56px;
+  margin-top: 55px;
 }
 </style>
 
@@ -35,14 +35,8 @@ export default {
     Header,
     Footer,
   },
-  async asyncData(context) {
-    console.log(context);
-    let manufactures = await Axios.get(' http://127.0.0.1:8000/api/manufactories/');
-    let kinds = await Axios.get(' http://127.0.0.1:8000/api/kinds/');
-    return {
-      manufactures: manufactures.data,
-      kinds: kinds.data,
-    }
+  async created() {
+
   }
 };
 </script>

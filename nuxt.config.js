@@ -20,14 +20,17 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto' },
     ],
     script: [
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js' },
       { src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js' },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' },
       { src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js' },
+
     ]
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:8000'
+    baseUrl: process.env.BASE_URL || 'http://localhost:8000',
+    kindsBaseUrl: '',
   },
 
   /*
@@ -52,7 +55,8 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/moment',
   ],
   /*
   ** Axios module configuration

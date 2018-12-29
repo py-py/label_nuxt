@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="row labels-list">
+  <div class="fluid-container mx-2 p-2">
+    <div class="row">
     <LabelCard
       v-for="label in labels"
       :key="label.id"
