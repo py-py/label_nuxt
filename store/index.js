@@ -1,42 +1,41 @@
 import Vuex from 'vuex';
-import Axios from 'axios';
 
 const createStore = () => {
   return new Vuex.Store({
     state: {
       loadedKinds: [],
-      loadedManufactories: [],
+      loadedManufactures: [],
     },
     mutations: {
       setKinds(state, kinds) {
         state.loadedKinds = kinds;
       },
-      setManufactories(state, manufactories) {
-        state.loadedManufactories = manufactories;
+      setManufactures(state, manufactures) {
+        state.loadedManufactures = manufactures;
       }
     },
     actions: {
       async nuxtServerInit(vuexContext, context) {
-        let dataManufactories = await Axios.get(' http://127.0.0.1:8000/api/manufactories/');
-        let dataKinds = await Axios.get(' http://127.0.0.1:8000/api/kinds/');
+        let dataManufactures = await context.$axios.get(process.env.manufactureUrl);
+        let dataKinds = await context.$axios.get(process.env.kindUrl);
 
-        vuexContext.commit('setManufactories', dataManufactories.data);
+        vuexContext.commit('setManufactures', dataManufactures.data);
         vuexContext.commit('setKinds', dataKinds.data);
       },
       setKinds(vuexContext, kinds) {
         vuexContext.commit('setKinds', kinds);
       },
-      setManufactories(vuexContext, manufactories) {
-        vuexContext.commit('setManufactories', manufactories);
+      setManufactures(vuexContext, manufactures) {
+        vuexContext.commit('setManufactures', manufactures);
       },
     },
     getters: {
       loadedKinds(state) {
         return state.loadedKinds;
       },
-      loadedManufactories(state) {
-        return state.loadedManufactories;
-      }
+      loadedManufactures(state) {
+        return state.loadedManufactures;
+      },
     }
   })
 }

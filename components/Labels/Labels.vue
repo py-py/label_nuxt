@@ -12,6 +12,7 @@
 
 <script>
 import LabelCard from "~/components/Labels/LabelCard.vue";
+
 export default {
   components: {
     LabelCard,

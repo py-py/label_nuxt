@@ -14,7 +14,7 @@ export default {
     Labels
   },
   async asyncData(context) {
-    let labelsData = await Axios.get("http://127.0.0.1:8000/api/labels/?last");
+    let labelsData = await Axios.get(process.env.labelUrl + '?last');
     return {
       loadedLabels: labelsData.data.results
     }

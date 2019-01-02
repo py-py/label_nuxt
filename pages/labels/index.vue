@@ -12,7 +12,7 @@
 
 <script>
 import Labels from "~/components/Labels/Labels.vue";
-import Pagination from "~/components/Pagination.vue";
+import Pagination from "~/components/UI/Pagination.vue";
 import Axios from "axios";
 
 export default {
@@ -21,12 +21,12 @@ export default {
     Pagination
   },
   async asyncData(context) {
-    let data = await Axios.get("http://127.0.0.1:8000/api/labels/");
+    let labels = await Axios.get("http://127.0.0.1:8000/api/labels/");
     return {
-      loadedLabels: data.data.results,
-      count: data.data.count,
-      prev: data.data.previous,
-      next: data.data.next,
+      loadedLabels: labels.data.results,
+      count: labels.data.count,
+      prev: labels.data.previous,
+      next: labels.data.next,
     }
   },
   computed: {

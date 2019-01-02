@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const APIHOST = 'http://localhost:8000/api/';
 
 module.exports = {
   mode: 'universal',
@@ -29,14 +30,19 @@ module.exports = {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:8000',
-    kindsBaseUrl: '',
+    baseUrl: process.env.BASE_URL || APIHOST,
+    labelUrl: APIHOST + 'labels/',
+    relatedLabelUrl: APIHOST + 'labels/related/',
+    kindUrl: APIHOST + 'kinds/',
+    manufactureUrl: APIHOST + 'manufactures/',
   },
 
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: {
+    color: '#fff'
+  },
 
   /*
   ** Global CSS

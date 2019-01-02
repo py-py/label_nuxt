@@ -7,60 +7,46 @@
         </h6>
       </div>
       <nuxt-link :to="/labels/+label.id">
-        <img class="card-img" :src="label.image_url" alt>
+        <img class="card-label" :src="label.image_url" alt>
       </nuxt-link>
       <div class="card-body">
         <div class="card-details">
           <div class="row">
             <div class="col-6 pr-1">Производитель:</div>
-            <div class="col-6">{{manufactoryName}}</div>
+            <div class="col-6">{{getManufactureName(label.manufacture)}}</div>
           </div>
           <div class="row">
             <div class="col-6 pr-1">Сорт:</div>
-            <div class="col-6">{{kindName}}</div>
+            <div class="col-6">{{getKindName(label.kind)}}</div>
           </div>
         </div>
       </div>
 
-      <div class="card-footer text-muted card-details">
-        Added: {{ getMomentFromNow(label.added_dt) }}
-      </div>
+      <div class="card-footer text-muted card-details">Added: {{ getMomentFromNow(label.added_dt) }}</div>
     </div>
   </div>
 </template>
 
 <script>
-  import Moment from 'moment';
+import commonMixin from "~/mixins/common.js";
 
-  export default {
-    props: {
-      label: {
-        type: Object,
-        required: true
-      }
-    },
-    methods: {
-      getMomentFromNow: function (ts) {
-        return Moment(ts).fromNow();
-      },
-    },
-    computed: {
-      kindName() {
-        let kind = this.$store.getters.loadedKinds.find(element => element.id === this.label.kind);
-        return kind.name;
-      },
-      manufactoryName() {
-        let manufactory = this.$store.getters.loadedManufactories.find(element => element.id === this.label.manufactory);
-        return manufactory.name;
-      },
+export default {
+  mixins: [commonMixin],
+  props: {
+    label: {
+      type: Object,
+      required: true
     }
-
-  };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .portfolio-item {
   margin-bottom: 10px;
+  .card-label {
+    width: 100%;
+  }
 }
 .card-details {
   font-size: 12px;

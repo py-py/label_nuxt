@@ -1,26 +1,28 @@
 <template>
   <section>
-    <LabelDetails :label="label"/>
+    <LabelDetails :label="label" :relatedLabels="relatedLabels"/>
   </section>
 </template>
 
 
 <script>
 import LabelDetails from "~/components/Labels/LabelDetails.vue";
-import Axios from 'axios';
 
 export default {
   components: {
     LabelDetails
   },
-  async asyncData(context) {
-    let data = await Axios.get('http://127.0.0.1:8000/api/labels/' + context.params.id);
+  async asyncData({ $axios, params }) {
+    let label = await $axios.get(process.env.labelUrl + params.id);
+    let relatedLabels = await $axios.get(process.env.relatedLabelUrl + params.id);
+
     return {
-      label: data.data
+      label: label.data,
+      relatedLabels: relatedLabels.data,
     }
   },
   validate ({params}) {
     return /^\d+$/.test(params.id)
-  }
+  },
 };
 </script>
