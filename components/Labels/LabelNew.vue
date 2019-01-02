@@ -3,15 +3,15 @@
     <div class="row">
       <div class="col-sm pb-1">
         <b-form-file
-          v-model="file"
-          :state="Boolean(file)"
+          v-model="fileImage"
+          :state="Boolean(fileImage)"
           placeholder="Choose a file..."
           accept="image/*"
           capture="camera"
         ></b-form-file>
       </div>
       <div class="col-sm pb-1">
-        <img :src="imgPreviewUrl" v-if="imgPreviewUrl" alt="previewImg">
+        <img :src="previewImage" v-if="previewImage">
       </div>
     </div>
     <div class="row">
@@ -27,8 +27,8 @@ export default {
   },
   data() {
     return {
-      file: null,
-      imgPreviewUrl: null,
+      fileImage: null,
+      previewImage: null,
 
       newLabel: {
         name: null,
@@ -40,11 +40,11 @@ export default {
     };
   },
   watch: {
-    file: function(val) {
+    fileImage: function(val) {
       let reader = new FileReader();
       let currentVueObj = this;
       reader.onload = function(e) {
-        currentVueObj.imgPreviewUrl = reader.result;
+        currentVueObj.previewImage = reader.result;
       };
       reader.readAsDataURL(val);
     }
