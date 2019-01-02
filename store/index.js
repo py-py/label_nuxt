@@ -15,9 +15,9 @@ const createStore = () => {
       }
     },
     actions: {
-      async nuxtServerInit(vuexContext, context) {
-        let dataManufactures = await context.$axios.get(process.env.manufactureUrl);
-        let dataKinds = await context.$axios.get(process.env.kindUrl);
+      async nuxtServerInit(vuexContext, {$axios}) {
+        let dataManufactures = await $axios.get(process.env.manufactureUrl);
+        let dataKinds = await $axios.get(process.env.kindUrl);
 
         vuexContext.commit('setManufactures', dataManufactures.data);
         vuexContext.commit('setKinds', dataKinds.data);
