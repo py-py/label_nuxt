@@ -14,10 +14,7 @@
               <nuxt-link to="/labels" class="nav-link">Labels</nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link to class="nav-link">Add a new label</nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link to class="nav-link">Contact</nuxt-link>
+              <nuxt-link to='/labels/new' class="nav-link">New label</nuxt-link>
             </li>
           </ul>
         </div>

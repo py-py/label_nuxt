@@ -13,15 +13,14 @@
 <script>
 import Labels from "~/components/Labels/Labels.vue";
 import Pagination from "~/components/UI/Pagination.vue";
-import Axios from "axios";
 
 export default {
   components: {
     Labels,
     Pagination
   },
-  async asyncData(context) {
-    let labels = await Axios.get("http://127.0.0.1:8000/api/labels/");
+  async asyncData({$axios}) {
+    let labels = await $axios.get("http://127.0.0.1:8000/api/labels/");
     return {
       loadedLabels: labels.data.results,
       count: labels.data.count,

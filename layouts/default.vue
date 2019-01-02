@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="main">
     <Header/>
-    <section class="main">
+    <section class="main-section py-1">
       <nuxt/>
     </section>
     <Footer/>
   </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 html {
   font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
@@ -18,12 +18,17 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  height: 100%;
 }
 
 .main {
+}
+
+.main-section {
   margin-top: 55px;
 }
 </style>
+
 
 <script>
 import Header from "~/components/Header.vue";

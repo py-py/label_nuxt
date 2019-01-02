@@ -24,7 +24,6 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
 .checked {
   color: #25c54f;

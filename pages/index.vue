@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="text-center pt-2">Last {{countLabels}} labels</h1>
+    <h4 class="text-center m-0">Last {{countLabels}} labels</h4>
     <Labels :labels="loadedLabels"/>
   </section>
 </template>
