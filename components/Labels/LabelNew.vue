@@ -1,39 +1,54 @@
 <template>
-  <div class="container">
-      <div class="col-xs-6">
-        <form id="labelForm">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-          </div>
-          <button type="submit" class="btn btn-primary mt-1">Submit</button>
-        </form>
+  <form method="post" class="container-fluid">
+    <div class="row">
+      <div class="col-sm pb-1">
+        <b-form-file
+          v-model="file"
+          :state="Boolean(file)"
+          placeholder="Choose a file..."
+          accept="image/*"
+          capture="camera"
+        ></b-form-file>
       </div>
-      <div class="col-xs-6">
-        <!-- <img id="image" src="picture.jpg"> -->
+      <div class="col-sm pb-1">
+        <img :src="imgPreviewUrl" v-if="imgPreviewUrl" alt="previewImg">
       </div>
     </div>
+    <div class="row">
+      <div class="btn btn-success m-auto">Post Label</div>
+    </div>
+  </form>
 </template>
 
 <script>
-// import Cropper from "cropperjs";
-
 export default {
-  // mounted: function() {
-  //   const image = document.getElementById("image");
-  //   const cropper = new Cropper(image, {
-  //     aspectRatio: 16 / 9,
-  //     crop(event) {
-  //       console.log(event.detail.x);
-  //       console.log(event.detail.y);
-  //       console.log(event.detail.width);
-  //       console.log(event.detail.height);
-  //       console.log(event.detail.rotate);
-  //       console.log(event.detail.scaleX);
-  //       console.log(event.detail.scaleY);
-  //     }
-  //   });
-  // }
+  components: {
+
+  },
+  data() {
+    return {
+      file: null,
+      imgPreviewUrl: null,
+
+      newLabel: {
+        name: null,
+        rating: null,
+        kind: null,
+        manufacturer: null,
+        year: null
+      }
+    };
+  },
+  watch: {
+    file: function(val) {
+      let reader = new FileReader();
+      let currentVueObj = this;
+      reader.onload = function(e) {
+        currentVueObj.imgPreviewUrl = reader.result;
+      };
+      reader.readAsDataURL(val);
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>

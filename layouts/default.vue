@@ -21,11 +21,8 @@ html {
   height: 100%;
 }
 
-.main {
-}
-
 .main-section {
-  margin-top: 55px;
+  // margin-top: 55px;
 }
 </style>
 
