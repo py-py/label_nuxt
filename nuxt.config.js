@@ -30,8 +30,11 @@ module.exports = {
     baseUrl: process.env.BASE_URL || APIHOST,
     labelUrl: APIHOST + 'labels/',
     relatedLabelUrl: APIHOST + 'labels/related/',
+    imageUrl: APIHOST + 'images/',
     kindUrl: APIHOST + 'kinds/',
     manufactureUrl: APIHOST + 'manufactures/',
+
+    maxDifferenceYear: 100,
   },
 
   /*

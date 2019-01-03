@@ -11,7 +11,8 @@
 
       <div class="col-md-6">
         <h4 class="product-title my-3">{{label.name}}</h4>
-        <Rating :seen="label.seen"/>
+        <Rating :rating="5"/>
+        <Seen :seen="label.seen" />
         <h4 class="my-3">Details</h4>
 
         <div class="row">
@@ -41,9 +42,10 @@
 </template>
 
 <script>
-import LabelRelated from "~/components/Labels/LabelRelated"
-import Rating from "~/components/UI/Rating"
-import commonMixin from "~/mixins/common.js"
+import LabelRelated from "~/components/Labels/LabelRelated";
+import Rating from "~/components/UI/Rating";
+import Seen from "~/components/UI/Seen";
+import commonMixin from "~/mixins/common.js";
 
 export default {
   mixins: [
@@ -51,7 +53,8 @@ export default {
   ],
   components: {
     LabelRelated,
-    Rating
+    Rating,
+    Seen,
   },
   props: {
     label: {

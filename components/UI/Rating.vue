@@ -8,7 +8,6 @@
         <span class="fa fa-star"></span>
         <span class="fa fa-star"></span>
       </div>
-      <small class="review-no">{{seen}} reviews</small>
     </div>
   </div>
 </template>
@@ -16,11 +15,11 @@
 <script>
 export default {
   props: {
-    seen: {
+    rating: {
       type: Number,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
