@@ -4,7 +4,6 @@
     <section class="main-section py-1">
       <nuxt/>
     </section>
-    <Footer/>
   </div>
 </template>
 
@@ -21,24 +20,16 @@ html {
   height: 100%;
 }
 
-.main-section {
-  // margin-top: 55px;
-}
 </style>
 
 
 <script>
 import Header from "~/components/Header.vue";
-import Footer from "~/components/Footer.vue";
 import Axios from 'axios';
 
 export default {
   components: {
     Header,
-    Footer,
   },
-  async created() {
-
-  }
 };
 </script>

@@ -1,35 +1,62 @@
 <template>
-  <div class="mb-1">
-    <b-form-select v-model="selected" :state="Boolean(selected)" :options="options"/>
+  <div>
+    <b-input-group class="mb-1">
+      <b-form-select v-model="selected" :state="Boolean(selected)" :options="options"/>
+      <b-input-group-append v-if="hasPermission">
+        <b-btn variant="success" @click="showModalKind">Add</b-btn>
+      </b-input-group-append>
+    </b-input-group>
+
+    <b-modal ref="kindModalRef" @ok="addKind" centered title="Let's add a new kind" v-if="hasPermission">
+      <b-input v-model="nameNewKind" placeholder="Enter a new name of kind"/>
+    </b-modal>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       selected: null,
-    }
+      nameNewKind: null,
+    };
   },
   computed: {
     options: function() {
-      let result = [{
-        value: null,
-        text: 'Please select a kind'
-      }]
+      let result = [
+        {
+          value: null,
+          text: "Select a kind"
+        }
+      ];
       for (let kind of this.$store.getters.loadedKinds) {
         result.push({
           value: kind.id,
           text: kind.name
-        })
+        });
       }
-      return result
+      return result;
+    },
+    hasPermission: function() {
+      return this.$store.getters.hasPermission;
     }
+  },
+  methods: {
+    showModalKind() {
+      this.$refs.kindModalRef.show();
+    },
+    hideModalKind() {
+      this.$refs.kindModalRef.hide();
+    },
+    async addKind() {
+      // TODO: continue
+      let kind = await this.$axios.post(proccess.env.kindUrl, {name: this.nameNewKind})
+    },
   },
   watch: {
     selected: function() {
-      this.$emit('selectedKind', this.selected);
+      this.$emit("selectedKind", this.selected);
     }
   }
-}
+};
 </script>

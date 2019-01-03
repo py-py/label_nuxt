@@ -5,6 +5,7 @@ const createStore = () => {
     state: {
       loadedKinds: [],
       loadedManufactures: [],
+      hasPermisson: true,
     },
     mutations: {
       setKinds(state, kinds) {
@@ -36,6 +37,9 @@ const createStore = () => {
       loadedManufactures(state) {
         return state.loadedManufactures;
       },
+      hasPermission(state) {
+        return state.hasPermisson;
+      }
     }
   })
 }

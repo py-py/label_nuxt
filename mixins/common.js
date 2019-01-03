@@ -14,8 +14,7 @@ let commonMixin = {
       let manufacturer = this.$store.getters.loadedManufactures.find(el => el.id === idManufacturer);
       return manufacturer.name
     },
-
-  }
+  },
 }
 
 export default commonMixin;
