@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-input-group class="mb-1">
+  <div class="mb-1">
+    <b-input-group>
       <b-form-select v-model="selected" :state="Boolean(selected)" :options="options"/>
       <b-input-group-append v-if="hasPermission">
         <b-btn variant="success" @click="showModalKind">Add</b-btn>
@@ -45,12 +45,9 @@ export default {
     showModalKind() {
       this.$refs.kindModalRef.show();
     },
-    hideModalKind() {
-      this.$refs.kindModalRef.hide();
-    },
     async addKind() {
       // TODO: continue
-      let kind = await this.$axios.post(proccess.env.kindUrl, {name: this.nameNewKind})
+      let kind = await this.$axios.post(process.env.kindUrl, {name: this.nameNewKind})
     },
   },
   watch: {

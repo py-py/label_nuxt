@@ -13,8 +13,13 @@ export default {
     LabelDetails
   },
   async asyncData({ $axios, params }) {
-    let label = await $axios.get(process.env.labelUrl + params.id);
-    let relatedLabels = await $axios.get(process.env.relatedLabelUrl + params.id);
+    try {
+      let label = await $axios.get(process.env.labelUrl + params.id);
+      let relatedLabels = await $axios.get(process.env.relatedLabelUrl + params.id);
+    } catch (err) {
+      // TODO
+      new Error(err)
+    }
 
     return {
       label: label.data,
