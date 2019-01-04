@@ -1,6 +1,16 @@
 <template>
-  <div>
-    <img :src="preview" v-if="preview">
+  <div v-if="preview">
+    <div>
+      <img id="idPreview" :src="preview" >
+    </div>
+    <div>
+      <vue-croppie v-if="preview" ref="croppieRef" :enableOrientation="true" @result="result" @update="update"></vue-croppie>
+      <div class="d-flex justify-content-md-center">
+        <v-button class="btn btn-info" @click="reset()">Reset</v-button>
+        <v-button class="btn btn-info" @click="crop()">Crop</v-button>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -11,7 +21,7 @@ export default {
       preview: null
     };
   },
-  props: ['file'],
+  props: ["file"],
   watch: {
     file: function(val) {
       let reader = new FileReader();
@@ -24,7 +34,10 @@ export default {
       reader.readAsDataURL(this.file);
     },
     preview: function(val) {
-      if (this.preview) this.$emit('imagePreview', this.preview)
+      // TODO: fix
+      if (this.preview) {
+        this.$emit("imagePreview", this.preview);
+      }
     }
   }
 };

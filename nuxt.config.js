@@ -35,6 +35,7 @@ module.exports = {
     manufactureUrl: APIHOST + 'manufactures/',
 
     maxDifferenceYear: 100,
+    aspectRatio: 1,
   },
 
   /*
@@ -54,6 +55,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    {src: '~plugins/croppie.js', ssr: false}
   ],
 
   /*
@@ -81,6 +83,7 @@ module.exports = {
     */
     extend(config, ctx) {
 
-    }
+    },
+    vendor: ['croppie']
   }
 }

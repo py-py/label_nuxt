@@ -16,7 +16,7 @@ export default {
   },
   async asyncData({ $axios, error }) {
     try {
-      let labels = await $axios.get("http://127.0.0.1:8000/api/labels/");
+      let labels = await $axios.get(process.env.labelUrl);
       return {
         loadedLabels: labels.data.results,
         count: labels.data.count,

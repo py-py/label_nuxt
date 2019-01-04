@@ -46,9 +46,9 @@ export default {
       this.$refs.kindModalRef.show();
     },
     async addKind() {
-      // TODO: continue
       try {
-        let kind = await this.$axios.post(process.env.kindUrl, {name: this.nameNewKind})
+        let {data} = await this.$axios.post(process.env.kindUrl, {name: this.nameNewKind})
+        this.$store.commit('addKind', data);
       } catch (err) {
         this.error(err);
       }

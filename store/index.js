@@ -11,6 +11,9 @@ const createStore = () => {
       setKinds(state, kinds) {
         state.loadedKinds = kinds;
       },
+      addKind(state, kind) {
+        state.loadedKinds.push(kind);
+      },
       setManufactures(state, manufactures) {
         state.loadedManufactures = manufactures;
       }
@@ -33,6 +36,9 @@ const createStore = () => {
       setManufactures(vuexContext, manufactures) {
         vuexContext.commit('setManufactures', manufactures);
       },
+      addKind(vuexContext, kind) {
+        vuexContext.commit('addKind', kind);
+      }
     },
     getters: {
       loadedKinds(state) {
