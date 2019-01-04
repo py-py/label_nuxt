@@ -25,7 +25,6 @@ html {
 
 <script>
 import Header from "~/components/Header.vue";
-import Axios from 'axios';
 
 export default {
   components: {

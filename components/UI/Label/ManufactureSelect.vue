@@ -44,8 +44,6 @@ export default {
       this.$refs.manufactureModalRef.show();
     },
     async addManufacture() {
-      // TODO: continue
-      // let manufacture = await this.$axios.post(proccess.env.manufactureUrl, {name: this.nameNewManufacture})
     },
   },
   watch: {

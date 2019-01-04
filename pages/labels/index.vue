@@ -1,12 +1,7 @@
 <template>
   <section>
     <Labels :labels="loadedLabels"/>
-    <Pagination
-     :countAll="count"
-     :countPage="countPage"
-     :next="next"
-     :prev="prev"
-    />
+    <Pagination :countAll="count" :countPage="countPage" :next="next" :prev="prev"/>
   </section>
 </template>
 
@@ -19,13 +14,17 @@ export default {
     Labels,
     Pagination
   },
-  async asyncData({$axios}) {
-    let labels = await $axios.get("http://127.0.0.1:8000/api/labels/");
-    return {
-      loadedLabels: labels.data.results,
-      count: labels.data.count,
-      prev: labels.data.previous,
-      next: labels.data.next,
+  async asyncData({ $axios, error }) {
+    try {
+      let labels = await $axios.get("http://127.0.0.1:8000/api/labels/");
+      return {
+        loadedLabels: labels.data.results,
+        count: labels.data.count,
+        prev: labels.data.previous,
+        next: labels.data.next
+      };
+    } catch (err) {
+      error(err);
     }
   },
   computed: {

@@ -5,7 +5,6 @@
       :state="Boolean(file)"
       placeholder="Choose a file..."
       accept="image/*"
-      capture="camera"
     ></b-form-file>
   </div>
 </template>

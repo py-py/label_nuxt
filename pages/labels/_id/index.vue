@@ -12,22 +12,20 @@ export default {
   components: {
     LabelDetails
   },
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, params, error }) {
     try {
       let label = await $axios.get(process.env.labelUrl + params.id);
       let relatedLabels = await $axios.get(process.env.relatedLabelUrl + params.id);
+      return {
+        label: label.data,
+        relatedLabels: relatedLabels.data
+      };
     } catch (err) {
-      // TODO
-      new Error(err)
-    }
-
-    return {
-      label: label.data,
-      relatedLabels: relatedLabels.data,
+      error(err);
     }
   },
-  validate ({params}) {
-    return /^\d+$/.test(params.id)
-  },
+  validate({ params }) {
+    return /^\d+$/.test(params.id);
+  }
 };
 </script>

@@ -61,28 +61,28 @@ export default {
   },
   methods: {
     postLabel: async function() {
-      let dataLabel = {
-        name: this.nameLabel,
-        year: this.yearLabel,
-        kind: this.selectedKindLabel,
-        manufacture: this.selectedManufactureLabel
-      }
-      let label = await this.$axios.post(process.env.labelUrl, dataLabel)
+      try {
+        let dataLabel = {
+          name: this.nameLabel,
+          year: this.yearLabel,
+          kind: this.selectedKindLabel,
+          manufacture: this.selectedManufactureLabel
+        };
+        let label = await this.$axios.post(process.env.labelUrl, dataLabel);
 
-      let dataImage = new FormData();
-      dataImage.set("label", label.data.id);
-      dataImage.set("image", this.imageFile);
+        let dataImage = new FormData();
+        dataImage.set("label", label.data.id);
+        dataImage.set("image", this.imageFile);
 
-      let image = await this.$axios.post(
-        process.env.imageUrl,
-        dataImage,
-        {
+        let image = await this.$axios.post(process.env.imageUrl, dataImage, {
           headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        },
-      );
-      this.$router.push("/labels/");
+            "Content-Type": "multipart/form-data"
+          }
+        });
+        this.$router.push("/labels/");
+      } catch (err) {
+        this.error(err);
+      }
     }
   }
 };

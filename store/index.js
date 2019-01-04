@@ -16,12 +16,16 @@ const createStore = () => {
       }
     },
     actions: {
-      async nuxtServerInit(vuexContext, {$axios}) {
-        let dataManufactures = await $axios.get(process.env.manufactureUrl);
-        let dataKinds = await $axios.get(process.env.kindUrl);
+      async nuxtServerInit(vuexContext, {$axios, error}) {
+        try{
+          let dataManufactures = await $axios.get(process.env.manufactureUrl);
+          let dataKinds = await $axios.get(process.env.kindUrl);
 
-        vuexContext.commit('setManufactures', dataManufactures.data);
-        vuexContext.commit('setKinds', dataKinds.data);
+          vuexContext.commit('setManufactures', dataManufactures.data);
+          vuexContext.commit('setKinds', dataKinds.data);
+        } catch (err) {
+          error(err)
+        }
       },
       setKinds(vuexContext, kinds) {
         vuexContext.commit('setKinds', kinds);

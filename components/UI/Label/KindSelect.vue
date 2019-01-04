@@ -47,7 +47,11 @@ export default {
     },
     async addKind() {
       // TODO: continue
-      let kind = await this.$axios.post(process.env.kindUrl, {name: this.nameNewKind})
+      try {
+        let kind = await this.$axios.post(process.env.kindUrl, {name: this.nameNewKind})
+      } catch (err) {
+        this.error(err);
+      }
     },
   },
   watch: {

@@ -7,16 +7,19 @@
 
 <script>
 import Labels from "~/components/Labels/Labels.vue";
-import Axios from "axios";
 
 export default {
   components: {
     Labels
   },
-  async asyncData(context) {
-    let labelsData = await Axios.get(process.env.labelUrl + '?last');
-    return {
-      loadedLabels: labelsData.data.results
+  async asyncData({ $axios, error }) {
+    try {
+      let labelsData = await $axios.get(process.env.labelUrl + "?last");
+      return {
+        loadedLabels: labelsData.data.results
+      };
+    } catch (err) {
+      error(err);
     }
   },
   computed: {
