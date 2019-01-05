@@ -20,7 +20,7 @@ export default {
   mounted: function() {
     let errorsDescription = {
       404: 'The page you requested was not found.',
-      default: 'Somethins goes wrong.',
+      default: 'Somethings goes wrong.',
     }
     if (errorsDescription.hasOwnProperty(this.error.statusCode)) {
       this.errorDescription = errorsDescription[this.error.statusCode]
