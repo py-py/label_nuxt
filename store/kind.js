@@ -33,3 +33,5 @@ const kindModule = {
     },
   }
 }
+
+export default kindModule

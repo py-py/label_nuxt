@@ -1,4 +1,4 @@
-let commonMixin = {
+const commonMixin = {
   methods: {
     getLocalDatetime: function(ts) {
       return new Date(ts).toDateString()
