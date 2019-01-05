@@ -1,14 +1,14 @@
 <template>
   <form method="post" class="container">
     <div class="row mb-1">
-      <div class="col-sm">
+      <div class="col-md">
         <ImageFile v-on:imageFile="imageFile=$event"/>
         <NameInput v-on:nameLabel="nameLabel=$event"/>
         <ManufactureSelect v-on:selectedManufacture="selectedManufactureLabel=$event"/>
         <KindSelect v-on:selectedKind="selectedKindLabel=$event"/>
         <YearInput v-on:yearLabel="yearLabel=$event"/>
       </div>
-      <div class="col-sm">
+      <div class="col-md">
         <ImagePreview :file="imageFile" v-on:imagePreview="imagePreview=$event"/>
       </div>
     </div>
@@ -61,6 +61,7 @@ export default {
   },
   methods: {
     postLabel: async function() {
+      // TODO: disable button, show spinner;
       try {
         let dataLabel = {
           name: this.nameLabel,

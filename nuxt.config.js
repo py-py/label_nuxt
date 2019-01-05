@@ -55,7 +55,6 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '~plugins/croppie.js', ssr: false}
   ],
 
   /*
@@ -84,6 +83,5 @@ module.exports = {
     extend(config, ctx) {
 
     },
-    vendor: ['croppie']
   }
 }

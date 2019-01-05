@@ -1,16 +1,15 @@
 <template>
-  <div v-if="preview">
-    <div>
-      <img id="idPreview" :src="preview" >
-    </div>
-    <div>
-      <vue-croppie v-if="preview" ref="croppieRef" :enableOrientation="true" @result="result" @update="update"></vue-croppie>
-      <div class="d-flex justify-content-md-center">
-        <v-button class="btn btn-info" @click="reset()">Reset</v-button>
-        <v-button class="btn btn-info" @click="crop()">Crop</v-button>
+  <div class="previewContainer" ref="previewContainer">
+    <!-- <div>
+      <img :src="previewImage">
+    </div>-->
+    <div v-show="previewImage">
+      <div class="croppieImage mb-1" ref="croppieImage"></div>
+      <div class="d-flex justify-content-around mb-1">
+        <b-button class="btn btn-info" @click="reset">Reset</b-button>
+        <b-button class="btn btn-info" @click="crop">Crop</b-button>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -18,33 +17,56 @@
 export default {
   data() {
     return {
-      preview: null
+      previewImage: null,
+      croppedImage: null,
+      croppie: null
     };
   },
   props: ["file"],
+  methods: {
+    handleImage: function(image) {
+      let el = this.$refs.croppieImage;
+      let size = this.$refs.previewContainer.getBoundingClientRect();
+
+      this.croppie = new Croppie(el, {
+        viewport: { width: size.width - 100, height: size.width - 100 },
+        boundary: { width: size.width, height: size.width },
+        showZoomer: false,
+        enableOrientation: true
+      });
+      this.croppie.bind({
+        url: image
+      });
+    },
+    reset: function() {},
+    crop: function() {}
+  },
   watch: {
-    file: function(val) {
+    file: async function(val) {
       let reader = new FileReader();
 
       let vueInstance = this;
       reader.onload = function() {
-        vueInstance.preview = reader.result;
+        let image = reader.result;
+        vueInstance.handleImage(image);
+        // previous variant;
+        vueInstance.previewImage = image;
       };
-
-      reader.readAsDataURL(this.file);
+      reader.readAsDataURL(val);
     },
-    preview: function(val) {
-      // TODO: fix
-      if (this.preview) {
-        this.$emit("imagePreview", this.preview);
-      }
+    previewImage: async function(val) {
+      // TODO: previes after cropping;
+      this.$emit("imagePreview", this.previewImage);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-img {
-  max-width: 100%;
+.previewContainer {
+  img {
+  }
+  .croppieImage {
+  }
 }
 </style>

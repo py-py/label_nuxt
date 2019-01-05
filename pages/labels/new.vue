@@ -11,9 +11,10 @@ export default {
   head() {
     return {
       link: [
+        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.css' },
       ],
       script: [
-        // { src: "https://unpkg.com/vue-croppie/dist/vue-croppie.js" },
+        { src: 'https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js' },
       ]
     };
   },
