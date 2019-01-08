@@ -1,15 +1,16 @@
 <template>
-  <div class="previewContainer" ref="previewContainer">
-    <!-- <div>
-      <img :src="previewImage">
-    </div>-->
-    <div v-show="previewImage">
-      <div class="croppieImage mb-1" ref="croppieImage"></div>
+  <div ref="containerRef">
+    <div v-show="croppie">
+      <div class="mb-1" ref="croppieRef"></div>
       <div class="d-flex justify-content-around mb-1">
-        <b-button class="btn btn-info" @click="reset">Reset</b-button>
-        <b-button class="btn btn-info" @click="crop">Crop</b-button>
+        <b-button class="btn btn-info" @click="crop" :disabled="!Boolean(croppie)">Crop</b-button>
+        <b-button class="btn btn-info" @click="show" :disabled="!Boolean(croppedImage)">Show</b-button>
       </div>
     </div>
+
+    <b-modal ref="croppieModalRef" centered title="Preview Image" :body-class="'mx-auto'" :hide-footer="true">
+      <img :src="croppedImage"/>
+    </b-modal>
   </div>
 </template>
 
@@ -17,56 +18,50 @@
 export default {
   data() {
     return {
-      previewImage: null,
       croppedImage: null,
       croppie: null
     };
   },
   props: ["file"],
   methods: {
-    handleImage: function(image) {
-      let el = this.$refs.croppieImage;
-      let size = this.$refs.previewContainer.getBoundingClientRect();
+    handleFileImage: function(fileImage) {
+      if (this.croppie) this.croppie.destroy();
+
+      let el = this.$refs.croppieRef;
+      let size = this.$refs.containerRef.getBoundingClientRect().width;
 
       this.croppie = new Croppie(el, {
-        viewport: { width: size.width - 100, height: size.width - 100 },
-        boundary: { width: size.width, height: size.width },
+        viewport: { width: size - 100, height: size - 100 },
+        boundary: { width: size, height: size },
         showZoomer: false,
         enableOrientation: true
       });
       this.croppie.bind({
-        url: image
+        url: fileImage
       });
     },
-    reset: function() {},
-    crop: function() {}
+    crop: async function() {
+      this.croppedImage = await this.croppie.result({
+        format: 'jpeg',
+      })
+    },
+    show: function() {
+      this.$refs.croppieModalRef.show();
+    }
   },
   watch: {
     file: async function(val) {
       let reader = new FileReader();
-
       let vueInstance = this;
       reader.onload = function() {
-        let image = reader.result;
-        vueInstance.handleImage(image);
-        // previous variant;
-        vueInstance.previewImage = image;
+        vueInstance.handleFileImage(reader.result);
       };
       reader.readAsDataURL(val);
     },
-    previewImage: async function(val) {
-      // TODO: previes after cropping;
-      this.$emit("imagePreview", this.previewImage);
+
+    croppedImage: function(val) {
+      this.$emit("imagePreview", this.croppedImage);
     }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.previewContainer {
-  img {
-  }
-  .croppieImage {
-  }
-}
-</style>
