@@ -9,7 +9,7 @@
         <YearInput v-on:yearLabel="yearLabel=$event"/>
       </div>
       <div class="col-md">
-        <ImagePreview :file="imageFile" v-on:imagePreview="imagePreview=$event"/>
+        <ImagePreview :file="imageFile" :name="nameLabel" v-on:imagePreview="imagePreview=$event"/>
       </div>
     </div>
     <div class="row">
@@ -73,7 +73,7 @@ export default {
 
         let dataImage = new FormData();
         dataImage.set("label", label.data.id);
-        dataImage.set("image", this.imageFile);
+        dataImage.set("image", this.imagePreview);
 
         let image = await this.$axios.post(process.env.imageUrl, dataImage, {
           headers: {

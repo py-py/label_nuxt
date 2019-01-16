@@ -15,14 +15,21 @@
 </template>
 
 <script>
+import base64ToFileMixin from "~/mixins/base64tofile.js";
+
+
 export default {
+  mixins: [base64ToFileMixin],
   data() {
     return {
       croppedImage: null,
       croppie: null
     };
   },
-  props: ["file"],
+  props: [
+    "file",
+    "name",
+  ],
   methods: {
     handleFileImage: function(fileImage) {
       if (this.croppie) this.croppie.destroy();
@@ -42,7 +49,7 @@ export default {
     },
     crop: async function() {
       this.croppedImage = await this.croppie.result({
-        format: 'jpeg',
+        format: "jpeg",
       })
     },
     show: function() {
@@ -58,9 +65,10 @@ export default {
       };
       reader.readAsDataURL(val);
     },
-
     croppedImage: function(val) {
-      this.$emit("imagePreview", this.croppedImage);
+      let fileObj = this.dataURLtoFile(val, this.name + '.jpeg')
+      console.log(fileObj);
+      this.$emit("imagePreview", fileObj);
     }
   }
 };
