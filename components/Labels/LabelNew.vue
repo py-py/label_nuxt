@@ -9,7 +9,7 @@
         <YearInput v-on:yearLabel="yearLabel=$event"/>
       </div>
       <div class="col-md">
-        <ImagePreview :file="imageFile" :name="nameLabel" v-on:imagePreview="imagePreview=$event"/>
+        <ImagePreview :file="imageFile" v-on:imagePreview="imagePreview=$event"/>
       </div>
     </div>
     <div class="row">
@@ -88,10 +88,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-img {
-  max-width: 100%;
-}
-</style>
-

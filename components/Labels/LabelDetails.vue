@@ -11,7 +11,7 @@
 
       <div class="col-md-6">
         <h4 class="product-title my-3">{{label.name}}</h4>
-        <Rating :rating="5"/>
+        <Rating :rating="label.rating" :isActive="true"/>
         <Seen :seen="label.seen" />
         <h4 class="my-3">Details</h4>
 

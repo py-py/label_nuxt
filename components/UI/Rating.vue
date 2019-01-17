@@ -1,14 +1,8 @@
 <template>
   <div class="row">
-    <div class="rating col">
-      <div class="stars">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-      </div>
-    </div>
+    <no-ssr>
+      <rate v-model="rate" :length="5" :disabled="Boolean(!isActive)" @after-rate="onAftereRate" />
+    </no-ssr>
   </div>
 </template>
 
@@ -16,15 +10,27 @@
 export default {
   props: {
     rating: {
-      type: Number,
+      type: String,
       required: true,
     },
+    isActive: {
+      type: Boolean,
+      required: true
+    }
   },
+  methods: {
+    onAftereRate(rate) {
+      console.log(this);
+    }
+  },
+  computed: {
+    rate: function(context) {
+      return Math.round(this.rating)
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.checked {
-  color: #25c54f;
-}
+
 </style>

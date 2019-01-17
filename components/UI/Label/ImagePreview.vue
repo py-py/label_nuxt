@@ -9,17 +9,21 @@
     </div>
 
     <b-modal ref="croppieModalRef" centered title="Preview Image" :body-class="'mx-auto'" :hide-footer="true">
-      <img :src="croppedImage"/>
+      <img :src="croppedImage" style="width: 100%"/>
     </b-modal>
   </div>
 </template>
 
 <script>
-import base64ToFileMixin from "~/mixins/base64tofile.js";
+import transformMixin from "~/mixins/transformFile.js";
+import uuidMixin from "~/mixins/generateUuid.js";
 
 
 export default {
-  mixins: [base64ToFileMixin],
+  mixins: [
+    transformMixin,
+    uuidMixin,
+  ],
   data() {
     return {
       croppedImage: null,
@@ -28,7 +32,6 @@ export default {
   },
   props: [
     "file",
-    "name",
   ],
   methods: {
     handleFileImage: function(fileImage) {
@@ -49,7 +52,7 @@ export default {
     },
     crop: async function() {
       this.croppedImage = await this.croppie.result({
-        format: "jpeg",
+        size: "original",
       })
     },
     show: function() {
@@ -66,8 +69,7 @@ export default {
       reader.readAsDataURL(val);
     },
     croppedImage: function(val) {
-      let fileObj = this.dataURLtoFile(val, this.name + '.jpeg')
-      console.log(fileObj);
+      let fileObj = this.convertBase64ToFile(val, name=this.generateUUID())
       this.$emit("imagePreview", fileObj);
     }
   }
