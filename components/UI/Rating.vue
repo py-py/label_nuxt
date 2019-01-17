@@ -8,29 +8,28 @@
 
 <script>
 export default {
+  data() {
+    return {
+      rate: null,
+    }
+  },
   props: {
-    rating: {
+    labelRating: {
       type: String,
       required: true,
     },
     isActive: {
       type: Boolean,
       required: true
-    }
+    },
+  },
+  mounted() {
+    this.rate = Math.round(this.labelRating)
   },
   methods: {
     onAftereRate(rate) {
-      console.log(this);
+      this.$emit('set-rating', rate)
     }
   },
-  computed: {
-    rate: function(context) {
-      return Math.round(this.rating)
-    }
-  }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

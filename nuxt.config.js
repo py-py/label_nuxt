@@ -81,10 +81,10 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
-      // if (ctx.isClient) {
-      //   config.devtool = '#source-map'
-      // }
+    extend(config, context) {
+      if (context.isClient) {
+        config.devtool = '#source-map'
+      }
     },
   },
 

@@ -12,7 +12,7 @@
 
         <div class="col-md-6">
           <h4 class="product-title my-3">{{label.name}}</h4>
-          <Rating :rating="label.rating" :isActive="true"/>
+          <Rating :labelRating="label.rating" :isActive="true" v-on:set-rating="setNewRating" />
           <Seen :seen="label.seen"/>
           <h4 class="my-3">Details</h4>
 
@@ -79,6 +79,14 @@ export default {
   },
   validate({ params }) {
     return /^\d+$/.test(params.id);
+  },
+  methods: {
+    setNewRating: async function(value) {
+      // TODO: continue
+      console.log('sending a new value of rating')
+      // await this.$axios.patch(this.process.env.labelUrl + params.id)
+      // TODO: send Updated Rating;
+    }
   }
 };
 </script>
