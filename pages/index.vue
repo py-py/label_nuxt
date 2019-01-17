@@ -1,22 +1,26 @@
 <template>
   <section>
     <h4 class="text-center m-0">Last {{countLabels}} labels</h4>
-    <Labels :labels="loadedLabels"/>
+    <div class="fluid-container mx-2 p-2">
+      <div class="row">
+        <LabelCard v-for="label in labels" :key="label.id" :label="label"/>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
-import Labels from "~/components/Labels/Labels.vue";
+import LabelCard from "~/components/Labels/LabelCard.vue";
 
 export default {
   components: {
-    Labels
+    LabelCard
   },
   async asyncData({ $axios, error }) {
     try {
-      let labelsData = await $axios.get(process.env.labelUrl + "?last");
+      let { data } = await $axios.get(process.env.labelUrl + "?last");
       return {
-        loadedLabels: labelsData.data.results
+        labels: data.results
       };
     } catch (err) {
       error(err);
@@ -24,7 +28,7 @@ export default {
   },
   computed: {
     countLabels: function() {
-      return this.loadedLabels.length;
+      return this.labels.length;
     }
   }
 };

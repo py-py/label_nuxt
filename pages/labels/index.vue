@@ -1,17 +1,22 @@
 <template>
   <section>
-    <Labels :labels="loadedLabels"/>
+    <div class="fluid-container mx-2 p-2">
+      <div class="row">
+        <LabelCard v-for="label in loadedLabels" :key="label.id" :label="label"/>
+      </div>
+    </div>
     <Pagination :countAll="count" :countPage="countPage" :next="next" :prev="prev"/>
   </section>
 </template>
 
+
 <script>
-import Labels from "~/components/Labels/Labels.vue";
+import LabelCard from "~/components/Labels/LabelCard.vue";
 import Pagination from "~/components/UI/Pagination.vue";
 
 export default {
   components: {
-    Labels,
+    LabelCard,
     Pagination
   },
   async asyncData({ $axios, error }) {
@@ -34,3 +39,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.labels-list {
+  margin-top: 20px;
+}
+</style>
+
