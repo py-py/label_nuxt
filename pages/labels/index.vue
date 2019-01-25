@@ -11,7 +11,7 @@
 
 
 <script>
-import LabelCard from "~/components/Labels/LabelCard.vue";
+import LabelCard from "~/components/Common/LabelCard.vue";
 import Pagination from "~/components/UI/Pagination.vue";
 
 export default {

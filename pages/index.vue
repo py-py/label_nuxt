@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import LabelCard from "~/components/Labels/LabelCard.vue";
+import LabelCard from "~/components/Common/LabelCard.vue";
 
 export default {
   components: {

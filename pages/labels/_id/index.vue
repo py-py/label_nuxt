@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import LabelRelated from "~/components/Labels/LabelRelated";
+import LabelRelated from "~/components/Common/LabelRelated";
 import Rating from "~/components/UI/Rating";
 import Seen from "~/components/UI/Seen";
 import commonMixin from "~/mixins/common.js";

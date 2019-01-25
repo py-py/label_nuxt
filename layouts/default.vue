@@ -24,7 +24,7 @@ html {
 
 
 <script>
-import Header from "~/components/Header.vue";
+import Header from "~/components/Shared/Header.vue";
 
 export default {
   components: {
