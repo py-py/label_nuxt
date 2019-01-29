@@ -10,10 +10,14 @@ const createStore = () => {
     },
     state: {
       hasPermisson: true,
+      isAuthentificated: true,
     },
     getters: {
       hasPermission(state) {
         return state.hasPermisson;
+      },
+      isAuthentificated(state) {
+        return state.isAuthentificated;
       }
     }
   })

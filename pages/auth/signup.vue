@@ -42,7 +42,7 @@
           </div>
           <!-- form-group// -->
           <p class="text-center">Have an account?
-            <nuxt-link :to="/signin/">Sign In</nuxt-link>
+            <nuxt-link to="/auth/signin/">Sign In</nuxt-link>
           </p>
         </b-form>
       </article>
@@ -65,6 +65,9 @@ export default {
   methods: {
     onSubmit() {
       console.log("Send data...");
+    },
+    onReset() {
+      console.log("Reset data...")
     }
   }
 };

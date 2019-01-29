@@ -34,7 +34,7 @@
           </div>
           <!-- form-group// -->
           <p class="text-center">Do not have an account?
-
+            <nuxt-link to="/auth/signup/">Sign Up</nuxt-link>
           </p>
         </b-form>
       </article>
